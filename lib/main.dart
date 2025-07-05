@@ -1,24 +1,21 @@
+import 'package:budgettrack/LoginSignup/Screen/Overview.dart';
+import 'package:budgettrack/LoginSignup/Screen/profile.dart';
+import 'package:budgettrack/LoginSignup/Screen/wallet.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-// import 'package:firebase_core/firebase_core.dart';
-// import 'firebase_options.dart';
-import 'login_screen.dart';
-import 'signup_screen.dart';
-// import 'dashboard_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:budgettrack/firebase_options.dart';
+import 'package:budgettrack/LoginSignup/Screen/onboarding.dart';
+import 'package:budgettrack/LoginSignup/Screen/login.dart';
+import 'package:budgettrack/LoginSignup/Screen/home_screen.dart';
+import 'package:budgettrack/LoginSignup/Screen/edit_profile.dart';
 
-void main() {
-  runApp(const BudgetPalApp());
-}
-/*
 void main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp();
 
   runApp(const BudgetPalApp());
 }
-*/
 
 class BudgetPalApp extends StatelessWidget {
   const BudgetPalApp({super.key});
@@ -26,205 +23,74 @@ class BudgetPalApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'BudgetPal',
       debugShowCheckedModeBanner: false,
-      routes: {
-        '/signup': (context) => const SignUpScreen(),
-        '/login': (context) => const LoginScreen(),
-        // '/dashboard': (context) => const DashboardScreen(), // Add when ready
-      },
-      home: const WelcomeScreen(),
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(), // Stream to listen to authentication changes
+        builder: (context, snapshot) {
+          // If the user is logged in, navigate to the BottomNavScreen, else OnboardingPage or LoginPage
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator(); // Show loading spinner while waiting
+          } else if (snapshot.hasData) {
+            return BottomNavScreen(); // User is logged in, navigate to the main screen with BottomNav
+          } else {
+            return OnboardingPage(); // User is not logged in, navigate to Onboarding or Login
+          }
+        },
+      ),
     );
   }
 }
 
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+class BottomNavScreen extends StatefulWidget {
+  @override
+  _BottomNavScreenState createState() => _BottomNavScreenState();
+}
 
-  void _showLoginOptions(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-      ),
-      backgroundColor: Colors.white,
-      builder: (BuildContext context) {
-        return Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Container(
-                width: 40,
-                height: 4,
-                margin: const EdgeInsets.only(bottom: 20),
-                decoration: BoxDecoration(
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-              _loginButton(
-                icon: Icons.g_mobiledata,
-                text: "Continue with Google",
-                onPressed: () {
-                  // TODO: Add Google Sign-In
-                },
-              ),
-              const SizedBox(height: 15),
-              _loginButton(
-                icon: Icons.apple,
-                text: "Continue with Apple",
-                onPressed: () {
-                  // TODO: Add Apple Sign-In
-                },
-              ),
-              const SizedBox(height: 15),
-              _loginButton(
-                icon: Icons.mail_outline,
-                text: "Log In with Email",
-                onPressed: () {
-                  Navigator.pop(context); // Close modal
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginScreen()),
-                  );
-                },
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
+class _BottomNavScreenState extends State<BottomNavScreen> {
+  int _selectedIndex = 0;
 
-  Widget _loginButton({
-    required IconData icon,
-    required String text,
-    required VoidCallback onPressed,
-  }) {
-    return SizedBox(
-      width: double.infinity,
-      height: 55,
-      child: OutlinedButton.icon(
-        onPressed: onPressed,
-        icon: Icon(icon, size: 24, color: Colors.black87),
-        label: Text(
-          text,
-          style: const TextStyle(color: Colors.black87, fontSize: 16),
-        ),
-        style: OutlinedButton.styleFrom(
-          side: const BorderSide(color: Colors.black12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-        ),
-      ),
-    );
+  // List of screens for BottomNavigationBar
+  final List<Widget> _screens = [
+    HomeScreen(),
+    WalletScreen(),
+    OverviewScreen(),
+    ProfileScreen(),
+  ];
+
+  // Function to handle Bottom Navigation Bar selection
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            // Top Section
-            Container(
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.45,
-              decoration: const BoxDecoration(
-                color: Color(0xFF3F3DFE),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(40),
-                  bottomRight: Radius.circular(40),
-                ),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/images/Savings-amico.png',
-                      height: 190,
-                    ),
-                    const SizedBox(height: 20),
-                    const Text(
-                      'BudgetPal',
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    const Text(
-                      'Track your expenses easily now',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white70,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            const Spacer(),
-
-            // Get Started Button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30.0),
-              child: SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: ElevatedButton(
-                  onPressed: () => _showLoginOptions(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF3F3DFE),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: const Text(
-                    'Get Started',
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 20),
-
-            // Sign In Text
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const LoginScreen()),
-                );
-              },
-              child: const Text.rich(
-                TextSpan(
-                  text: 'Have an account? ',
-                  style: TextStyle(color: Colors.black54),
-                  children: [
-                    TextSpan(
-                      text: 'Sign In',
-                      style: TextStyle(
-                        color: Color(0xFF3F3DFE),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 30),
-          ],
-        ),
+      body: _screens[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        selectedItemColor: Colors.orange.shade700,
+        unselectedItemColor: Colors.grey.shade400,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_balance_wallet),
+            label: 'Wallet',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.show_chart),
+            label: 'Overview',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: 'Profile',
+          ),
+        ],
       ),
     );
   }

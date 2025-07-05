@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "883921270041",
+    "firebase_url": "https://budgetapp-cb583-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "budgetapp-cb583",
+    "storage_bucket": "budgetapp-cb583.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:883921270041:android:69bd43772b227823b84188",
+        "android_client_info": {
+          "package_name": "com.example.budgettrack"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "883921270041-fi4gcbqmicq6q97hfbgg1gbtp52eq5rc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.budgettrack",
+            "certificate_hash": "4d2df9ba78d8562c8baf6ac3b143be6629a8ad4b"
+          }
+        },
+        {
+          "client_id": "883921270041-ppop76jkerqup13koebcbf7prg0re65o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdb6K5FwZO-HTFfcrf9fjpZRpiavl2Sas"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "883921270041-ppop76jkerqup13koebcbf7prg0re65o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "883921270041-ap6qofgagccdegsj8i2mmsj1h27tjb76.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.budgettrack"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
