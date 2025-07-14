@@ -163,7 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text(
                     'Total Balance',
-                    style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   SizedBox(height: 8),
                   Text(
@@ -239,10 +239,13 @@ class _HomeScreenState extends State<HomeScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => ExpensesScreen()),
-          );
+          ).then((_) {
+            _loadTransactions(); // Refresh balance after returning
+          });
         },
+
         backgroundColor: Colors.orange.shade700,
-        foregroundColor: Colors.white, // Set the icon color to white
+        foregroundColor: Colors.white,
         child: Icon(Icons.add),
       ),
     );

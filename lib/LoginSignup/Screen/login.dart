@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-import 'package:budgettrack/LoginSignup/Screen/home_screen.dart';
+import 'package:budgettrack/main.dart';
 import 'package:budgettrack/LoginSignup/Screen/signup.dart';
 import 'package:budgettrack/LoginSignup/Widget/snackbar.dart';
 import 'package:budgettrack/LoginSignup/Widget/button.dart';
@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => HomeScreen(),
+          builder: (context) => BottomNavScreen(),
         ),
       );
     } else {
@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
         // Navigate to the HomeScreen after successful login
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => HomeScreen()),
+          MaterialPageRoute(builder: (context) => BottomNavScreen()),
         );
       }
     } catch (e) {
@@ -136,24 +136,27 @@ class _LoginScreenState extends State<LoginScreen> {
               // Navigate to Forgot Password Screen
               Align(
                 alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
+                child: GestureDetector(
+                  onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => ForgotPassword(), // Navigating to ForgotPasswordScreen
+                        builder: (context) => const ForgotPassword(),
                       ),
                     );
                   },
-                  child: const Text(
-                    'Forgot Password?',
-                    style: TextStyle(
-                      color: Colors.blue,
-                      fontWeight: FontWeight.bold,
+                  child: const Padding(
+                    padding: EdgeInsets.only(right: 20),
+                    child: Text(
+                      "Forgot Password?",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: 5),
 
               MyButtons(
                 onTap: loginUser,

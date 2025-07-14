@@ -1,10 +1,10 @@
-import 'package:budgettrack/LoginSignup/Screen/wallet.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:budgettrack/LoginSignup/Screen/edit_profile.dart';
 import 'package:budgettrack/LoginSignup/Screen/privacy_policy.dart';
 import 'package:budgettrack/LoginSignup/Screen/login.dart';
+import 'package:budgettrack/LoginSignup/Screen/notification.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -22,7 +22,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   // Function to handle Bottom Navigation Bar selection
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index; // Update selected index to show the corresponding screen
+      _selectedIndex = index;
     });
   }
 
@@ -99,7 +99,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
           actions: [
             IconButton(
               icon: Icon(Icons.notifications, color: Colors.black),
-              onPressed: () {}, // No action for the notifications button
+              onPressed: () {
+                // Navigate to the NotificationScreen when the icon is pressed
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NotificationScreen()),
+                );
+              }
             ),
           ],
         ),

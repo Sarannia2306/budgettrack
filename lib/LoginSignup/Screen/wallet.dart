@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:budgettrack/LoginSignup/Screen/notification.dart';
 
 class WalletScreen extends StatefulWidget {
   @override
@@ -106,7 +107,13 @@ class _WalletScreenState extends State<WalletScreen> {
           actions: [
             IconButton(
               icon: Icon(Icons.notifications, color: Colors.black),
-              onPressed: () {},
+              onPressed: () {
+                // Navigate to the NotificationScreen when the icon is pressed
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NotificationScreen()),
+                );
+              },
             ),
           ],
         ),
@@ -121,10 +128,20 @@ class _WalletScreenState extends State<WalletScreen> {
           if (snapshot.hasData && snapshot.data != null) {
             var walletData = snapshot.data!.snapshot.value as Map<dynamic, dynamic>?;
             if (walletData != null) {
-              _balance = walletData['balance']?.toDouble() ?? 0.0;  // Explicit conversion to double
-              _goalAmount = walletData['goal']?.toDouble() ?? 5000.0;  // Explicit conversion to double
-              _progress = (_balance / _goalAmount);
-              _sliderValue = _goalAmount; // Set slider to the current goal
+              double newBalance = walletData['balance']?.toDouble() ?? 0.0;
+              double newGoal = walletData['goal']?.toDouble() ?? 5000.0;
+
+              if (newBalance != _balance || newGoal != _goalAmount) {
+                setState(() {
+                  _balance = newBalance;
+                  _goalAmount = newGoal;
+                  _progress = (_balance / _goalAmount);
+
+                  if ((_sliderValue - _goalAmount).abs() > 1.0) {
+                    _sliderValue = _goalAmount;
+                  }
+                });
+              }
             }
           }
 

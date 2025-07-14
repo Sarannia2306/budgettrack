@@ -1,3 +1,4 @@
+import 'package:budgettrack/main.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -5,7 +6,6 @@ import '../Services/authentication.dart';
 import '../Widget/button.dart';
 import '../Widget/snackbar.dart';
 import '../Widget/text_field.dart';
-import 'home_screen.dart';
 import 'login.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -60,7 +60,7 @@ class _SignupScreenState extends State<SignupScreen> {
       // Navigate to the HomeScreen after successful signup
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => HomeScreen(),
+          builder: (context) => BottomNavScreen(),
         ),
       );
     } else {
@@ -162,7 +162,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       " Login",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.orange,  // Set the desired color here, e.g., blue
+                        color: Colors.orange,
                       ),
                     ),
                   )

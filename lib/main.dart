@@ -4,11 +4,8 @@ import 'package:budgettrack/LoginSignup/Screen/wallet.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:budgettrack/firebase_options.dart';
 import 'package:budgettrack/LoginSignup/Screen/onboarding.dart';
-import 'package:budgettrack/LoginSignup/Screen/login.dart';
 import 'package:budgettrack/LoginSignup/Screen/home_screen.dart';
-import 'package:budgettrack/LoginSignup/Screen/edit_profile.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

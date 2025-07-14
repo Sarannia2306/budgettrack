@@ -71,7 +71,9 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => AddIncomeScreen()),
-    );
+    ).then((_) {
+      _loadTransactions(); // Refresh after returning
+    });
   }
 
   // Navigate to AddExpenseScreen
@@ -79,7 +81,9 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => AddExpenseScreen()),
-    );
+    ).then((_) {
+      _loadTransactions();
+    });
   }
 
   @override
@@ -101,7 +105,7 @@ class _ExpensesScreenState extends State<ExpensesScreen> {
               ),
             ],
           ),
-          // Add the back arrow button in the leading position of the AppBar
+
           leading: IconButton(
             icon: Icon(Icons.arrow_back, color: Colors.black), // Back arrow icon
             onPressed: () {
