@@ -45,10 +45,10 @@ class _LoginScreenState extends State<LoginScreen> {
         isLoading = false;
       });
 
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (context) => BottomNavScreen(),
-        ),
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => BottomNavScreen()),
+            (route) => false, // Remove all previous routes
       );
     } else {
       setState(() {
@@ -89,9 +89,10 @@ class _LoginScreenState extends State<LoginScreen> {
         });
 
         // Navigate to the HomeScreen after successful login
-        Navigator.pushReplacement(
+        Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => BottomNavScreen()),
+              (route) => false, // Remove all previous routes
         );
       }
     } catch (e) {
