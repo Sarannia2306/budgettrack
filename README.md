@@ -28,15 +28,12 @@
    ```bash
    git clone https://github.com/Sarannia2306/budgettrack.git
    ```
-
 2. **Install dependencies**
    ```bash
    flutter pub get
    ```
-
 3. **Run the app**
    ```bash
    flutter run
    ```
-
 ---
