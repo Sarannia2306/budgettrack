@@ -1,28 +1,51 @@
 # 💰 BudgetTrack
 
-**BudgetTrack** is a simple and user-friendly Flutter app designed to help users track their daily expenses and manage their personal budget effectively.
-
-## 📱 Features
-- Add, edit, and delete expenses
-- View total spending
-- Simple and clean UI
-- Local data storage
-- Organized expense list by date
-
-## 🛠️ Tech Stack
-- **Flutter** (Dart)
-- **Firebase** (optional for future enhancements)
-- **Provider** or basic state management
-
-## 🚀 Getting Started
-
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/Sarannia2306/budgettrack.git
-
-2. Navigate to the project folder and run:
-   flutter pub get
-   flutter run
+**BudgetTrack** is a lightweight and intuitive Flutter application that helps users track their daily expenses and stay on top of their personal budget. Whether you're managing lunch money or monthly bills, this app keeps it simple and organized.
 
 ---
 
+## 📱 Features
+
+- ✅ Add, edit, and delete expense records
+- 📊 View total spending at a glance
+- 🧾 Expenses organized by date
+- 🧠 Clean and intuitive user interface
+- 📦 Local data storage for offline use
+
+---
+
+## 🛠️ Tech Stack
+
+- 💙 **Flutter** (Dart)
+- 🔐 **Firebase** *(planned for future updates)*
+- 📂 State Management: **Provider** (or setState for small-scale logic)
+
+---
+
+## 🚀 Getting Started
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Sarannia2306/budgettrack.git
+   ```
+
+2. **Install dependencies**
+   ```bash
+   flutter pub get
+   ```
+
+3. **Run the app**
+   ```bash
+   flutter run
+   ```
+
+---
+
+## 🔮 Future Enhancements
+
+- 🔐 User authentication (email/password login)
+- 📅 Monthly budget tracking & reminders
+- 📂 Category-based expense filters and charts
+- ☁️ Firebase integration for cloud sync
+
+---
