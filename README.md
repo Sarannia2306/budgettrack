@@ -26,5 +26,3 @@
 
 ---
 
-Let me know if you want to add screenshots or demo GIFs later!
-
