@@ -40,12 +40,3 @@
    ```
 
 ---
-
-## 🔮 Future Enhancements
-
-- 🔐 User authentication (email/password login)
-- 📅 Monthly budget tracking & reminders
-- 📂 Category-based expense filters and charts
-- ☁️ Firebase integration for cloud sync
-
----
