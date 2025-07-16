@@ -1,16 +1,30 @@
-# budgettrack
+# 💰 BudgetTrack
 
-A new Flutter project.
+**BudgetTrack** is a simple and user-friendly Flutter app designed to help users track their daily expenses and manage their personal budget effectively.
 
-## Getting Started
+## 📱 Features
+- Add, edit, and delete expenses
+- View total spending
+- Simple and clean UI
+- Local data storage
+- Organized expense list by date
 
-This project is a starting point for a Flutter application.
+## 🛠️ Tech Stack
+- **Flutter** (Dart)
+- **Firebase** (optional for future enhancements)
+- **Provider** or basic state management
 
-A few resources to get you started if this is your first Flutter project:
+## 🚀 Getting Started
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/Sarannia2306/budgettrack.git
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. Navigate to the project folder and run:
+   flutter pub get
+   flutter run
+
+---
+
+Let me know if you want to add screenshots or demo GIFs later!
+
